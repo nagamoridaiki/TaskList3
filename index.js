@@ -9,7 +9,7 @@ let inicialTableTag =
     '<th>' + "状態" + '</th>' +
 '<tr>'
 taskList.innerHTML = inicialTableTag
-let tasks = { taskName:[], progress:[]}
+const tasks = [];
 
 //新規タスクの追加ボタンが押下された時の処理
 button.addEventListener("click", ()=>{
@@ -18,7 +18,7 @@ button.addEventListener("click", ()=>{
     }else{
         //selectedProgress = checkProgress()
         //tasks.progress.push(selectedProgress)
-        tasks.taskName.push(newTask.value)
+        tasks.push({ taskName: newTask.value, progress: "" });
         newTask.value == ""
         display()
     }
@@ -39,13 +39,12 @@ function checkProgress(){
 //追加されたタスクの画面描画
 function display(){
     taskList.innerHTML = inicialTableTag
-    console.log("tasks", tasks)
 
-    for (let i = 0 ; i < tasks.taskName.length ; i++) {
+    for (let i = 0 ; i < tasks.length ; i++) {
         const tr = document.createElement("tr")
         tr.innerHTML = 
         '<td>' + i + '</td>' + 
-        '<td>' + tasks.taskName[i] + '</td>' + 
+        '<td>' + tasks[i].taskName + '</td>' + 
         '<td>' + 
             //'<button>' +  tasks.progress[i] + '</button>' +
             '<button>' +  "作業中" + '</button>' +
