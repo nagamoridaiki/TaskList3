@@ -17,7 +17,7 @@ button.addEventListener("click", ()=>{
         alert("入力が空です。")
     }else{
         //selectedProgress = checkProgress()
-        //tasks.progress.push(selectedProgress)
+        //tasks.push({ taskName: newTask.value, progress: selectedProgress });
         tasks.push({ taskName: newTask.value, progress: "" });
         newTask.value == ""
         display()
@@ -31,10 +31,10 @@ function checkProgress(){
     for (let i = 0 ; i < progressList.length ; i++) {
         progressList[i].checked ? mode = progressList[i].value : null
     }
-    console.log("mode", mode)
     return mode
 }
 */
+
 
 //追加されたタスクの画面描画
 function display(){
@@ -46,11 +46,25 @@ function display(){
         '<td>' + i + '</td>' + 
         '<td>' + tasks[i].taskName + '</td>' + 
         '<td>' + 
-            //'<button>' +  tasks.progress[i] + '</button>' +
+            //'<button>' +  tasks[i].progress + '</button>' +
             '<button>' +  "作業中" + '</button>' +
-            '<button>' + "削除" + '</button>' +
+            '<button id="'+ i + '" class=remove>' + "削除" + '</button>' +
         '</td>'
         taskList.appendChild(tr)
+
+        removeBtn = document.getElementsByClassName('remove')
+        for (var k=0; k < removeBtn.length; k++) {
+            removeBtn[k].addEventListener('click', removeItem);
+        };
     }
 }
+
+// 削除ボタンが押されたら発動
+function removeItem(){
+    var id = this.getAttribute('id');
+    tasks.splice(id, 1);
+    display()
+}
+
+
 
