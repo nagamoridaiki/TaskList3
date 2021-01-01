@@ -1,27 +1,27 @@
-const button = document.getElementById("button")
-const taskList = document.getElementById("taskList")
+const button = document.getElementById('button')
+const taskList = document.getElementById('taskList')
 let progressList = document.getElementsByName('process')
-let newTask = document.getElementById("newTask")
+let newTask = document.getElementById('newTask')
 let initialTableTag = 
 '<tr>' +
-    '<th>' + "ID" + '</th>' +
-    '<th>' + "コメント" + '</th>' +
-    '<th>' + "状態" + '</th>' +
+    '<th>' + 'ID' + '</th>' +
+    '<th>' + 'コメント' + '</th>' +
+    '<th>' + '状態' + '</th>' +
 '<tr>'
 taskList.innerHTML = initialTableTag
 const tasks = [];
 const progressStatus = {
-    'running' : '作業中',
-    'complete' : '完了'
+    running : '作業中',
+    complete : '完了'
 }
 
 //新規タスクの追加ボタンが押下された時の処理
-button.addEventListener("click", ()=>{
-    if(newTask.value === ""){
-        alert("入力が空です。")
+button.addEventListener('click', ()=>{
+    if(newTask.value === ''){
+        alert('入力が空です。')
     }else{
-        tasks.push({ taskName: newTask.value, progress: progressStatus.running });
-        newTask.value = ""
+        tasks.push({ taskName : newTask.value, progress : progressStatus.running });
+        newTask.value = ''
         display()
     }
 })
@@ -43,12 +43,12 @@ function display(){
         taskList.appendChild(tr)
 
         removeBtn = document.getElementsByClassName('remove')
-        for (let k=0; k < removeBtn.length; k++) {
+        for (let k = 0 ; k < removeBtn.length ; k++) {
             removeBtn[k].addEventListener('click', removeItem);
         };
 
         nextbtn = document.getElementsByClassName('next')
-        for (let n=0; n < nextbtn.length; n++) {
+        for (let n = 0 ; n < nextbtn.length ; n++) {
             nextbtn[n].addEventListener('click', moveOnProgress);
         };
     }
@@ -66,7 +66,7 @@ function removeItem(){
 //完了から作業中へ
 function moveOnProgress(){
     const id = this.getAttribute('id');
-    tasks[id].progress == '作業中' ? tasks[id].progress = '完了' : tasks[id].progress = '作業中'
+    tasks[id].progress === '作業中' ? tasks[id].progress = '完了' : tasks[id].progress = '作業中'
     display()
 }
 
