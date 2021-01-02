@@ -37,8 +37,8 @@ function display(){
         '<td>' + i + '</td>' + 
         '<td>' + tasks[i].taskName + '</td>' + 
         '<td>' + 
-            '<button id="'+ i + '" class=next>' + tasks[i].progress + '</button>' +
-            '<button id="'+ i + '" class=remove>' + "削除" + '</button>' +
+            '<button class=next>' + tasks[i].progress + '</button>' +
+            '<button class=remove>' + "削除" + '</button>' +
         '</td>'
         taskList.appendChild(tr)
 
@@ -49,6 +49,7 @@ function display(){
 
         nextbtn = document.getElementsByClassName('next')
         for (let n = 0 ; n < nextbtn.length ; n++) {
+            nextbtn[n].setAttribute('id', n)
             nextbtn[n].addEventListener('click', moveOnProgress);
         };
     }
