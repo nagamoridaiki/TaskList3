@@ -44,6 +44,7 @@ function display(){
 
         removeBtn = document.getElementsByClassName('remove')
         for (let k = 0 ; k < removeBtn.length ; k++) {
+            removeBtn[k].setAttribute('id', k)
             removeBtn[k].addEventListener('click', removeItem);
         };
 
@@ -57,6 +58,7 @@ function display(){
 
 // 削除ボタンが押されたら発動
 function removeItem(){
+    
     const id = this.getAttribute('id');
     tasks.splice(id, 1);
     display()
