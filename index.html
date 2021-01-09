@@ -6,9 +6,9 @@
 </head>
 <body>
     <h1>ToDoリスト</h1>
-    <input type="radio" id="process0" name="process" value='全て' checked>全て
-    <input type="radio" id="process1" name="process" value='作業中'>作業中
-    <input type="radio" id="process2" name="process" value='完了'>完了
+    <input type="radio" name="process" value='全て' onclick="display()" checked>全て
+    <input type="radio" name="process" value='作業中' onclick="display()" >作業中
+    <input type="radio" name="process" value='完了' onclick="display()">完了
     <p>
         <table id="taskList">
         </table>
