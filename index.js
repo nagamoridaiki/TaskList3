@@ -28,7 +28,7 @@ button.addEventListener('click', ()=>{
 
 
 //追加されたタスクの画面描画
-function display(){
+function display() {
     taskList.innerHTML = initialTableTag
 
     for (let i = 0 ; i < tasks.length ; i++) {
@@ -57,7 +57,7 @@ function display(){
 }
 
 // 削除ボタンが押されたら発動
-function removeItem(){
+function removeItem() {
     
     const id = this.getAttribute('id');
     tasks.splice(id, 1);
@@ -67,7 +67,7 @@ function removeItem(){
 //3-3
 //作業中から完了
 //完了から作業中へ
-function moveOnProgress(){
+function moveOnProgress() {
     const id = this.getAttribute('id');
     tasks[id].progress === '作業中' ? tasks[id].progress = '完了' : tasks[id].progress = '作業中'
     display()
