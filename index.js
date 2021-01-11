@@ -13,7 +13,7 @@ const progressStatus = {
     running : '作業中',
     complete : '完了'
 }
-let indexcount = 1;
+let indexcount = 0;
 
 //新規タスクの追加ボタンが押下された時の処理
 button.addEventListener('click', ()=>{
@@ -38,7 +38,7 @@ function display() {
 
     for (let i = 0 ; i < displayTasks.length ; i++) {
         const tr = document.createElement("tr");
-        tr.setAttribute('id', i);
+        tr.setAttribute('id', displayTasks[i].index);
         tr.innerHTML = 
         '<td>' + displayTasks[i].index + '</td>' + 
         '<td>' + displayTasks[i].taskName + '</td>' + 
@@ -50,13 +50,13 @@ function display() {
 
         removeBtn = document.getElementsByClassName('remove');
         for (let k = 0 ; k < removeBtn.length ; k++) {
-            removeBtn[k].setAttribute('id', k);
+            removeBtn[k].setAttribute('id', displayTasks[k].index);
             removeBtn[k].addEventListener('click', removeItem);
         };
 
         nextbtn = document.getElementsByClassName('next');
         for (let n = 0 ; n < nextbtn.length ; n++) {
-            nextbtn[n].setAttribute('id', n);
+            nextbtn[n].setAttribute('id', displayTasks[n].index);
             nextbtn[n].addEventListener('click', moveOnProgress);
         };
     }
@@ -65,7 +65,11 @@ function display() {
 // 作業項目の削除
 function removeItem() {
     const id = this.getAttribute('id');
-    tasks.splice(id, 1);
+    for (let i = 0 ; i < tasks.length ; i++) {
+        if (tasks[i].index === Number(id)) {
+            tasks.splice(i, 1)
+        }
+    }
     attachIndex();//再度tesksの番号を割り振る
     display();
 }
@@ -73,10 +77,14 @@ function removeItem() {
 //作業進捗の切り替え
 function moveOnProgress() {
     const id = this.getAttribute('id');
-    if (displayTasks[id].progress === progressStatus.running) {//現在の進捗が進行中ならば切り替え
-        displayTasks[id].progress = progressStatus.complete;//完了
-    }else{
-        displayTasks[id].progress = progressStatus.running;//進行中
+    for (let i = 0 ; i < displayTasks.length ; i++) {
+        if (displayTasks[i].index === Number(id)) {
+            if (displayTasks[i].progress === progressStatus.running) {
+                displayTasks[i].progress = progressStatus.complete;
+            } else {
+                displayTasks[i].progress = progressStatus.running;
+            }
+        }
     }
     display();
 }
